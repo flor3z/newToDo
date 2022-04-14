@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.task-content {
+  position: center;
+  text-align: center;
+  font-size: 1.75rem;
+  
+}
+
+.task-content input:focus {
+  outline: none;
+  background-color: rgb(197, 220, 228);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 3px;
+  padding: 2px;
+}
+
+
+.main-content-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
