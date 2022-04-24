@@ -14,10 +14,11 @@ export default class TodoList extends React.Component {
     this.onTextChangeHandler = this.onTextChangeHandler.bind(this);
     // this.onTextClickHandler = this.onTextClickHandler.bind(this);
     this.addItem = this.addItem.bind(this);
+    this.onClickComplete = this.onClickComplete.bind(this);
   }
   onTextChangeHandler(event) {
     const { name, value } = event.target;
-    console.log(name, value);
+
     this.setState({
       [name]: value,
       // itemValue: value,
@@ -40,7 +41,7 @@ export default class TodoList extends React.Component {
       isCompleted: isCompleted,
       text: itemValue,
     };
-
+    //Pay Close attention to the way you created the newTodo! Remeber the Key names to properly select those values!!!!//
     const updatedList = [...this.state.itemList, newTodo];
 
     this.setState({
@@ -48,6 +49,26 @@ export default class TodoList extends React.Component {
       id: id + 1,
       text: '',
       isCompleted: false,
+    });
+  }
+  //Created this new method below for Updating the Checked property based on the specifc Item...still needs work on switching its isCompleted status..
+  onClickComplete(id) {
+    const newList = this.state.itemList.map((item) => {
+      console.log(item);
+
+      if (item.id === id) {
+        return {
+          ...item,
+          isCompleted: !item.isCompleted,
+        };
+      } else {
+        return item;
+      }
+    });
+    // console.log(newList);
+
+    this.setState({
+      itemList: newList,
     });
   }
 
@@ -67,7 +88,14 @@ export default class TodoList extends React.Component {
           <ul>
             {/* contiune HERE.... FIND A WAY TO DISPALY THE CORRENT VALUES COMING FROM THE "ITEM" PARAMETER!! */}
             {this.state.itemList.map((item) => {
-              return <Item key={item.id} task={item.itemValue} />;
+              return (
+                <Item
+                  key={item.id}
+                  task={item.text}
+                  onClickComplete={this.onClickComplete}
+                  data={this.state}
+                />
+              );
             })}
           </ul>
         </div>
