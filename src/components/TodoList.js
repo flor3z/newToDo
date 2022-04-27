@@ -9,7 +9,7 @@ export default class TodoList extends React.Component {
       // itemSubmittedValue: '',
       itemList: [],
       id: 0,
-      isCompleted: false,
+      // isCompleted: false,
     };
     this.onTextChangeHandler = this.onTextChangeHandler.bind(this);
     // this.onTextClickHandler = this.onTextClickHandler.bind(this);
@@ -35,10 +35,10 @@ export default class TodoList extends React.Component {
   // }
   //continue here ********** you have to make the button have the addItem method as the only onClick property...incorporate method above into this//
   addItem() {
-    const { itemValue, id, isCompleted } = this.state;
+    const { itemValue, id } = this.state;
     const newTodo = {
       id: id,
-      isCompleted: isCompleted,
+      isCompleted: false,
       text: itemValue,
     };
     //Pay Close attention to the way you created the newTodo! Remeber the Key names to properly select those values!!!!//
@@ -47,14 +47,14 @@ export default class TodoList extends React.Component {
     this.setState({
       itemList: updatedList,
       id: id + 1,
-      text: '',
-      isCompleted: false,
+      itemValue: '',
+      // isCompleted: false,
     });
   }
   //Created this new method below for Updating the Checked property based on the specifc Item...still needs work on switching its isCompleted status..
   onClickComplete(id) {
     const newList = this.state.itemList.map((item) => {
-      console.log(item);
+      // debugger;
 
       if (item.id === id) {
         return {
@@ -65,11 +65,11 @@ export default class TodoList extends React.Component {
         return item;
       }
     });
-    // console.log(newList);
 
     this.setState({
       itemList: newList,
     });
+    console.log(newList);
   }
 
   render() {
@@ -79,6 +79,7 @@ export default class TodoList extends React.Component {
           <label>Tasks for the Day</label>
           <br />
           <input
+            value={this.state.itemValue}
             name="itemValue"
             type="text"
             placeholder="Tasks..."
@@ -91,9 +92,9 @@ export default class TodoList extends React.Component {
               return (
                 <Item
                   key={item.id}
+                  id={item.id}
                   task={item.text}
                   onClickComplete={this.onClickComplete}
-                  data={this.state}
                 />
               );
             })}

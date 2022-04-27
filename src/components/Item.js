@@ -7,11 +7,11 @@ export default class Item extends React.Component {
 
   render() {
     // console.log(this.props.data.isCompleted);
-    console.log(this.props.data.id); //this is pulling as undefined...find a way to send it down properly,so that u can send it back up
+    // console.log(this.props.id); //this is pulling as undefined...find a way to send it down properly,so that u can send it back up
     return (
       <li>
         <input
-          onClick={() => this.props.onClickComplete(this.props.data.id)}
+          onClick={() => this.props.onClickComplete(this.props.id)}
           type="checkbox"
           checked={this.props.isCompleted}
         />
