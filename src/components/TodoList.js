@@ -15,6 +15,7 @@ export default class TodoList extends React.Component {
     // this.onTextClickHandler = this.onTextClickHandler.bind(this);
     this.addItem = this.addItem.bind(this);
     this.onClickComplete = this.onClickComplete.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
   onTextChangeHandler(event) {
     const { name, value } = event.target;
@@ -49,6 +50,13 @@ export default class TodoList extends React.Component {
       id: id + 1,
       itemValue: '',
       // isCompleted: false,
+    });
+  }
+  //Keep testing (if it doesnt equal the ID it stays in original list, if it DOES equal, it gets filtered out!)
+  deleteItem(id) {
+    const newList = this.state.itemList.filter((item) => item.id !== id);
+    this.setState({
+      itemList: newList,
     });
   }
   //Created this new method below for Updating the Checked property based on the specifc Item...still needs work on switching its isCompleted status..
@@ -87,14 +95,16 @@ export default class TodoList extends React.Component {
           />
           <button onClick={this.addItem}>Submit</button>
           <ul>
-            {/* contiune HERE.... FIND A WAY TO DISPALY THE CORRENT VALUES COMING FROM THE "ITEM" PARAMETER!! */}
+            {/* contiune HERE.... FIND A WAY TO DISPALY THE CURRENT VALUES COMING FROM THE "ITEM" PARAMETER!! */}
             {this.state.itemList.map((item) => {
               return (
                 <Item
                   key={item.id}
                   id={item.id}
+                  isCompleted={item.isCompleted}
                   task={item.text}
                   onClickComplete={this.onClickComplete}
+                  deleteItem={this.deleteItem}
                 />
               );
             })}

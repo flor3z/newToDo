@@ -15,6 +15,11 @@ html {
   
 }
 
+ul {
+  list-style-type: none;
+  padding-top: 1.5rem;
+}
+
 .task-content input:focus {
   outline: none;
   background-color: rgb(197, 220, 228);
@@ -23,6 +28,19 @@ html {
   padding: 2px;
 }
 
+.strike-out {
+  text-decoration: line-through 2px solid rgb(60, 60, 60);
+}
+
+.item-container{
+  margin-bottom: 1.25rem;
+  border-radius: 5px;
+  background-color: aliceblue;
+  border: 1px solid rgb(116, 115, 115);
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
 
 .main-content-container{
   display: flex;
