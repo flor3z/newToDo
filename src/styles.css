@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: inherit;
 }
+body{
+  background-color: #ead6c9;
+
+}
 
 html {
   font-size: 62.5%;
@@ -12,7 +16,11 @@ html {
   position: center;
   text-align: center;
   font-size: 1.75rem;
-  
+  border: 1px solid;
+  padding: 1rem;
+  border-radius: 3px;
+  box-shadow:  2px 2px 4px #000000;
+  background-color: rgb(234, 234, 237);
 }
 
 ul {
@@ -22,10 +30,12 @@ ul {
 
 .task-content input:focus {
   outline: none;
-  background-color: rgb(197, 220, 228);
-  border: 1px solid rgb(0, 0, 0);
+  border-style: solid;
+
+  /* background-color: rgb(197, 220, 228); */
+  /* border: 1px solid rgb(0, 0, 0); */
   border-radius: 3px;
-  padding: 2px;
+  /* padding: 2px; */
 }
 
 .strike-out {
@@ -34,15 +44,17 @@ ul {
 
 .item-container{
   margin-bottom: 1.25rem;
-  border-radius: 5px;
-  background-color: aliceblue;
-  border: 1px solid rgb(116, 115, 115);
+  box-shadow: 0px 30px 40px rgba(0,0,0,.1);
+  background-color: transparent;
+  border-bottom: 1px solid rgb(116, 115, 115);
   list-style-type: none;
   display: flex;
   justify-content: space-between;
 }
 
 .main-content-container{
+
+  margin-top: 4rem;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
