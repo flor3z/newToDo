@@ -4,12 +4,16 @@
   box-sizing: inherit;
 }
 body{
-  background-color: #ead6c9;
-
+  background-image: url(../src/img/pexels-lukas-1419923.jpg);
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 html {
   font-size: 62.5%;
+  /* font-family: 'Exo 2', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
 }
 
 .task-content {
@@ -51,6 +55,18 @@ ul {
   display: flex;
   justify-content: space-between;
 }
+.item-container span, input {
+  cursor: pointer;
+}
+svg {
+  color: rgb(181, 55, 55);
+ 
+}
+svg :hover {
+
+  color: rgb(228, 53, 53);
+ cursor: pointer;
+}
 
 .main-content-container{
 
@@ -59,3 +75,6 @@ ul {
   flex-direction: row;
   justify-content: space-evenly;
 }
+
+/* For Trash Icon Hover Effect */
+

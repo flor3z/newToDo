@@ -18,6 +18,28 @@ export default class TodoList extends React.Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.onClickEdit = this.onClickEdit.bind(this);
   }
+
+  //************LifeCycle Methods here **************//
+  componentDidMount() {
+    console.log('Mounted');
+    const json = localStorage.getItem('itemList');
+    const loadedItems = JSON.parse(json);
+    if (loadedItems.length > 0) {
+      this.setState({
+        itemList: loadedItems,
+        id: loadedItems.id,
+      });
+    }
+  }
+  //Figure Out how to send the ID to local storage so that it persists upon page refresh/revisit
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Updated');
+    if (prevState.itemList !== this.state.itemList) {
+      const temp = JSON.stringify(this.state.itemList);
+      localStorage.setItem('itemList', temp);
+    }
+  }
+
   onTextChangeHandler(event) {
     const { name, value } = event.target;
 
@@ -65,17 +87,18 @@ export default class TodoList extends React.Component {
 
   onClickEdit(id) {
     //First filter out the specific Item from the list that was clicked
+    const selectedItem = this.state.itemList.find((item) => item.id === id);
+
     const filterListItems = this.state.itemList.filter(
       (item) => item.id !== id
     );
     //Second, I need to filter out the text of that item to edit it
-    const selectedItem = this.state.itemList.find((item) => item.id === id);
-    console.log(filterListItems, selectedItem);
-    this.setState({
+    //used prevState to make reference to previous value as was getting a Duplication Id Error --- I think its fixed?
+    this.setState((prevState) => ({
       itemList: filterListItems,
       itemValue: selectedItem.text,
-      id: id,
-    });
+      id: prevState.id,
+    }));
   }
 
   //Created this new method below for Updating the Checked property based on the specifc Item...still needs work on switching its isCompleted status..

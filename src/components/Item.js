@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { FaTrash } from 'react-icons/fa';
 export default class Item extends React.Component {
   constructor(props) {
     super();
@@ -26,9 +26,9 @@ export default class Item extends React.Component {
           >
             {this.props.task}
           </span>
-          <button onClick={() => this.props.deleteItem(this.props.id)}>
-            Delete
-          </button>
+
+          <FaTrash onClick={() => this.props.deleteItem(this.props.id)} />
+
           {/* <button onClick={() => this.props.onClickEdit(this.props.id)}>
             Edit
           </button> */}
