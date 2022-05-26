@@ -20,20 +20,22 @@ export default class TodoList extends React.Component {
   }
 
   //************LifeCycle Methods here **************//
+  //Error was here! Once the page was Refreshed and specifically the id value loadedItems.id( which can't be used b/c Arrry's dont have Id properties)
+  //gave the id, the id based on the items "length" or position.
   componentDidMount() {
-    console.log('Mounted');
     const json = localStorage.getItem('itemList');
     const loadedItems = JSON.parse(json);
-    if (loadedItems.length > 0) {
+    // console.log(loadedItems);
+    if (loadedItems && loadedItems.length > 0) {
       this.setState({
         itemList: loadedItems,
-        id: loadedItems.id,
+        id: loadedItems.length,
       });
     }
   }
   //Figure Out how to send the ID to local storage so that it persists upon page refresh/revisit
   componentDidUpdate(prevProps, prevState) {
-    console.log('Updated');
+    // console.log(this.state.itemList, this.state);
     if (prevState.itemList !== this.state.itemList) {
       const temp = JSON.stringify(this.state.itemList);
       localStorage.setItem('itemList', temp);
@@ -42,9 +44,23 @@ export default class TodoList extends React.Component {
 
   onTextChangeHandler(event) {
     const { name, value } = event.target;
+    // const tempItemList = this.state.itemList;
+    // const itemFound = tempItemList.find((item) => {
+    //   console.log(item.text);
+    // });
+    // console.log(newtext, text);
+    //pass in old and new text from item.js
 
+    //grab old text by using state variable in item.js (componentDID mount)
+
+    //itemfound cannot be undefiend == must equal some value//
+
+    //replace text of itemFound with new text.
+
+    //final step update state with new itemlist console.log(tempItemList to confirm changes)//
     this.setState({
       [name]: value,
+
       // itemValue: value,
     });
   }
@@ -67,6 +83,7 @@ export default class TodoList extends React.Component {
     };
     if (newTodo.text !== '') {
       const updatedList = [...this.state.itemList, newTodo];
+      // console.log(updatedList);
       this.setState({
         itemList: updatedList,
         id: id + 1,
@@ -85,18 +102,33 @@ export default class TodoList extends React.Component {
     });
   }
 
-  onClickEdit(id) {
-    //First filter out the specific Item from the list that was clicked
-    const selectedItem = this.state.itemList.find((item) => item.id === id);
+  onClickEdit(text, id) {
+    // First filter out the specific Item from the list that was clicked
+    // const selectedItem = this.state.itemList.find((item) => item.id === id);
 
-    const filterListItems = this.state.itemList.filter(
-      (item) => item.id !== id
-    );
+    // const filterListItems = this.state.itemList.filter(
+    //   (item) => item.id !== id
+    // );
     //Second, I need to filter out the text of that item to edit it
     //used prevState to make reference to previous value as was getting a Duplication Id Error --- I think its fixed?
+    // this.setState((prevState) => ({
+    //   itemList: filterListItems,
+    //   itemValue: selectedItem.text,
+    //   id: prevState.id,
+    // }));
+
+    const updatedTodos = this.state.itemList.map((item) => {
+      if (item.id === id) {
+        console.log(item.text, text, item, item.id, id);
+        return { ...item, text: text };
+      } else {
+        return item;
+      }
+    });
+
+    // console.log(itemToEdit);
     this.setState((prevState) => ({
-      itemList: filterListItems,
-      itemValue: selectedItem.text,
+      itemList: updatedTodos,
       id: prevState.id,
     }));
   }
@@ -119,7 +151,6 @@ export default class TodoList extends React.Component {
     this.setState({
       itemList: newList,
     });
-    console.log(newList);
   }
 
   render() {
@@ -145,6 +176,7 @@ export default class TodoList extends React.Component {
                   id={item.id}
                   isCompleted={item.isCompleted}
                   task={item.text}
+                  handleChange={this.onTextChangeHandler}
                   onClickComplete={this.onClickComplete}
                   deleteItem={this.deleteItem}
                   onClickEdit={this.onClickEdit}

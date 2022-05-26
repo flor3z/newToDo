@@ -1,5 +1,7 @@
 import React from 'react';
+// import ContentEditable from 'react-contenteditable';
 import { FaTrash } from 'react-icons/fa';
+
 export default class Item extends React.Component {
   constructor(props) {
     super();
@@ -20,12 +22,27 @@ export default class Item extends React.Component {
             type="checkbox"
             checked={this.props.isCompleted}
           />
-          <span
+          <input
+            className={completedClass}
+            type="text"
+            onChange={(e) =>
+              this.props.onClickEdit(e.target.value, this.props.id)
+            }
+            value={this.props.task}
+          />
+          {/* <ContentEditable
+            className={completedClass}
+            html={this.props.task} // innerHTML of the editable div
+            disabled={false} // use true to disable editing
+            onChange={(e) => this.props.handleChange(e.target.value)} // handle innerHTML change
+            tagName="article" // Use a custom HTML tag (uses a div by default)
+          /> */}
+          {/* <span
             onClick={() => this.props.onClickEdit(this.props.id)}
             className={completedClass}
           >
             {this.props.task}
-          </span>
+          </span> */}
 
           <FaTrash onClick={() => this.props.deleteItem(this.props.id)} />
 

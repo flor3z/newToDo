@@ -42,6 +42,15 @@ ul {
   /* padding: 2px; */
 }
 
+.item-container input {
+  background-color: transparent;
+  border: none;
+}
+
+.item-container input:focus{
+  border: none;
+}
+
 .strike-out {
   text-decoration: line-through 2px solid rgb(60, 60, 60);
 }
