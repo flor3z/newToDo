@@ -1,5 +1,6 @@
 import React from 'react';
 import Item from './Item';
+import { v4 as uuidv4 } from 'uuid';
 
 export default class TodoList extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export default class TodoList extends React.Component {
       itemValue: '',
       // itemSubmittedValue: '',
       itemList: [],
-      id: 0,
+      id: '',
       // isCompleted: false,
     };
     this.onTextChangeHandler = this.onTextChangeHandler.bind(this);
@@ -25,11 +26,13 @@ export default class TodoList extends React.Component {
   componentDidMount() {
     const json = localStorage.getItem('itemList');
     const loadedItems = JSON.parse(json);
-    // console.log(loadedItems);
+
+    //*******continue to experience an error with Id's matching up and dupliacting key's becomes the result********
+    console.log(loadedItems);
     if (loadedItems && loadedItems.length > 0) {
       this.setState({
         itemList: loadedItems,
-        id: loadedItems.length,
+        // id: loadedItems.length,
       });
     }
   }
@@ -75,22 +78,24 @@ export default class TodoList extends React.Component {
   // }
   //continue here ********** you have to make the button have the addItem method as the only onClick property...incorporate method above into this//
   addItem() {
-    const { itemValue, id } = this.state;
+    const { itemValue } = this.state;
     const newTodo = {
-      id: id,
+      id: uuidv4(),
       isCompleted: false,
       text: itemValue,
     };
+
     if (newTodo.text !== '') {
       const updatedList = [...this.state.itemList, newTodo];
       // console.log(updatedList);
       this.setState({
         itemList: updatedList,
-        id: id + 1,
+        id: uuidv4(),
         itemValue: '',
         // isCompleted: false,
       });
     }
+
     //Pay Close attention to the way you created the newTodo! Remeber the Key names to properly select those values!!!!//
   }
 
