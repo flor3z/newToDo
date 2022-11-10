@@ -47,56 +47,31 @@ export default class TodoList extends React.Component {
 
   onTextChangeHandler(event) {
     const { name, value } = event.target;
-    // const tempItemList = this.state.itemList;
-    // const itemFound = tempItemList.find((item) => {
-    //   console.log(item.text);
-    // });
-    // console.log(newtext, text);
-    //pass in old and new text from item.js
 
-    //grab old text by using state variable in item.js (componentDID mount)
-
-    //itemfound cannot be undefiend == must equal some value//
-
-    //replace text of itemFound with new text.
-
-    //final step update state with new itemlist console.log(tempItemList to confirm changes)//
     this.setState({
       [name]: value,
 
       // itemValue: value,
     });
   }
-  //contiune tomorrow here at submit handler...cant seem to display text on screen//
-  // onTextClickHandler(e) {
-  //   e.preventDefault();
-  //   const submitTextVal = this.state.itemValue;
-  //   console.log(submitTextVal);
-  //   this.setState({
-  //     itemSubmittedValue: submitTextVal,
-  //   });
-  // }
-  //continue here ********** you have to make the button have the addItem method as the only onClick property...incorporate method above into this//
-  addItem() {
+
+  addItem(event) {
     const { itemValue } = this.state;
     const newTodo = {
       id: uuidv4(),
       isCompleted: false,
       text: itemValue,
     };
-
+    // if (event.key === 'Enter') {
     if (newTodo.text !== '') {
       const updatedList = [...this.state.itemList, newTodo];
-      // console.log(updatedList);
       this.setState({
         itemList: updatedList,
         id: uuidv4(),
         itemValue: '',
-        // isCompleted: false,
       });
     }
-
-    //Pay Close attention to the way you created the newTodo! Remeber the Key names to properly select those values!!!!//
+    // }
   }
 
   //Keep testing (if it doesnt equal the ID it stays in original list, if it DOES equal, it gets filtered out!)
@@ -108,20 +83,6 @@ export default class TodoList extends React.Component {
   }
 
   onClickEdit(text, id) {
-    // First filter out the specific Item from the list that was clicked
-    // const selectedItem = this.state.itemList.find((item) => item.id === id);
-
-    // const filterListItems = this.state.itemList.filter(
-    //   (item) => item.id !== id
-    // );
-    //Second, I need to filter out the text of that item to edit it
-    //used prevState to make reference to previous value as was getting a Duplication Id Error --- I think its fixed?
-    // this.setState((prevState) => ({
-    //   itemList: filterListItems,
-    //   itemValue: selectedItem.text,
-    //   id: prevState.id,
-    // }));
-
     const updatedTodos = this.state.itemList.map((item) => {
       if (item.id === id) {
         console.log(item.text, text, item, item.id, id);
@@ -131,18 +92,14 @@ export default class TodoList extends React.Component {
       }
     });
 
-    // console.log(itemToEdit);
     this.setState((prevState) => ({
       itemList: updatedTodos,
       id: prevState.id,
     }));
   }
 
-  //Created this new method below for Updating the Checked property based on the specifc Item...still needs work on switching its isCompleted status..
   onClickComplete(id) {
     const newList = this.state.itemList.map((item) => {
-      // debugger;
-
       if (item.id === id) {
         return {
           ...item,
@@ -169,11 +126,15 @@ export default class TodoList extends React.Component {
             name="itemValue"
             type="text"
             placeholder="Add task..."
+            // onKeyPress={(e) => {
+            //   e.key === 'Enter' ? this.addItem() : null;
+            // }}
             onChange={this.onTextChangeHandler}
           />
-          <button onClick={this.addItem}>Submit</button>
+          <button className="submitTodo-button" onClick={this.addItem}>
+            Submit
+          </button>
           <ul>
-            {/* contiune HERE.... FIND A WAY TO DISPALY THE CURRENT VALUES COMING FROM THE "ITEM" PARAMETER!! */}
             {this.state.itemList.map((item) => {
               return (
                 <Item

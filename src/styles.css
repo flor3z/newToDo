@@ -17,12 +17,12 @@ html {
 }
 
 .task-content {
-  position: center;
+  width: 30rem;
   text-align: center;
-  font-size: 1.75rem;
+  font-size: 2.75rem;
   border: 1px solid;
   padding: 1rem;
-  border-radius: 3px;
+  border-radius: .8rem;
   box-shadow:  2px 2px 4px #000000;
   background-color: rgb(234, 234, 237);
 }
@@ -32,14 +32,26 @@ ul {
   padding-top: 1.5rem;
 }
 
+.task-content input {
+  padding: .15rem;
+  border-radius: .25rem;
+}
+
 .task-content input:focus {
   outline: none;
-  border-style: solid;
+  border: 2px solid #1DA1F2;
+}
 
-  /* background-color: rgb(197, 220, 228); */
-  /* border: 1px solid rgb(0, 0, 0); */
-  border-radius: 3px;
-  /* padding: 2px; */
+.submitTodo-button {
+  font-weight: 500;
+  letter-spacing: .2rem;
+  padding: .15rem;
+  cursor: pointer;
+  margin-left: .5rem;
+  border-radius: .5rem;
+  background-color: #1DA1F2;
+  border: 1px solid #3a3838;
+  color: #ffffff;
 }
 
 .item-container input {
@@ -78,11 +90,10 @@ svg :hover {
 }
 
 .main-content-container{
-
-  margin-top: 4rem;
+  margin-top: 12rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 /* For Trash Icon Hover Effect */
