@@ -119,21 +119,24 @@ export default class TodoList extends React.Component {
     return (
       <div className="main-content-container">
         <div className="task-content">
-          <label>Tasks for the Day</label>
+          <label className="main-title">Tasks for the Day</label>
           <br />
-          <input
-            value={this.state.itemValue}
-            name="itemValue"
-            type="text"
-            placeholder="Add task..."
-            // onKeyPress={(e) => {
-            //   e.key === 'Enter' ? this.addItem() : null;
-            // }}
-            onChange={this.onTextChangeHandler}
-          />
-          <button className="submitTodo-button" onClick={this.addItem}>
-            Submit
-          </button>
+          <div className="input-button-container">
+            <input
+              className="createTodo-input"
+              value={this.state.itemValue}
+              name="itemValue"
+              type="text"
+              placeholder="Add task..."
+              // onKeyPress={(e) => {
+              //   e.key === 'Enter' ? this.addItem() : null;
+              // }}
+              onChange={this.onTextChangeHandler}
+            />
+            <button className="submitTodo-button" onClick={this.addItem}>
+              Submit
+            </button>
+          </div>
           <ul>
             {this.state.itemList.map((item) => {
               return (

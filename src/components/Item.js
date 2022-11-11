@@ -12,6 +12,7 @@ export default class Item extends React.Component {
       <li>
         <div className="item-container">
           <input
+            className="item-checkbox"
             onChange={() => this.props.onClickComplete(this.props.id)}
             type="checkbox"
             checked={this.props.isCompleted}
