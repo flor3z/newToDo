@@ -56,14 +56,16 @@ export default class TodoList extends React.Component {
   }
 
   addItem(event) {
+    event.preventDefault();
+
     const { itemValue } = this.state;
     const newTodo = {
       id: uuidv4(),
       isCompleted: false,
-      text: itemValue,
+      text: itemValue.trim(),
     };
-    // if (event.key === 'Enter') {
-    if (newTodo.text !== '') {
+
+    if (newTodo.text.trim() !== '') {
       const updatedList = [...this.state.itemList, newTodo];
       this.setState({
         itemList: updatedList,
@@ -71,7 +73,6 @@ export default class TodoList extends React.Component {
         itemValue: '',
       });
     }
-    // }
   }
 
   //Keep testing (if it doesnt equal the ID it stays in original list, if it DOES equal, it gets filtered out!)
@@ -122,20 +123,19 @@ export default class TodoList extends React.Component {
           <label className="main-title">Tasks for the Day</label>
           <br />
           <div className="input-button-container">
-            <input
-              className="createTodo-input"
-              value={this.state.itemValue}
-              name="itemValue"
-              type="text"
-              placeholder="Add task..."
-              // onKeyPress={(e) => {
-              //   e.key === 'Enter' ? this.addItem() : null;
-              // }}
-              onChange={this.onTextChangeHandler}
-            />
-            <button className="submitTodo-button" onClick={this.addItem}>
-              Submit
-            </button>
+            <form>
+              <input
+                className="createTodo-input"
+                value={this.state.itemValue}
+                name="itemValue"
+                type="text"
+                placeholder="Add task..."
+                onChange={this.onTextChangeHandler}
+              />
+              <button className="submitTodo-button" onClick={this.addItem}>
+                Submit
+              </button>
+            </form>
           </div>
           <ul>
             {this.state.itemList.map((item) => {
