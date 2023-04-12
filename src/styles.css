@@ -60,9 +60,10 @@ html {
 }
 
 .submitTodo-button {
+  box-shadow: 2px 3px 3px 2px  rgb(115, 115, 115, 0.75);
   width: fit-content;
   height: 2.25rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: .2rem;
   padding: .15rem;
   cursor: pointer;
@@ -71,6 +72,12 @@ html {
   background-color: #1DA1F2;
   border: 1px solid #3a3838;
   color: #ffffff;
+  transition: all .2s;
+}
+
+.submitTodo-button:active {
+  transform: scale(0.98);
+  box-shadow: 1px 1.5px 1.5px rgba(0, 0, 0);
 }
 
 .submitTodo-button:hover {
@@ -120,14 +127,15 @@ svg {
   padding: 0 1rem 0 1rem;
   height: 2rem;
   width: 2rem;
-  color: rgb(228, 53, 53);;
+  color: rgb(166, 36, 36);
   
 }
 
-svg :hover {
-  color:rgba(138, 14, 14, 0.85);
+svg:hover {
+  color:rgb(237, 5, 5);
   cursor: pointer;
-  transition: all .2s;
+  transform: scale(1.1);
+  transition: all .3s;
 }
 
 .main-content-container{
