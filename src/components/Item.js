@@ -7,8 +7,6 @@ export default class Item extends React.Component {
   }
 
   render() {
-    console.log(this.props.task);
-
     return (
       <li className={this.props.isCompleted ? 'completed-todo' : null}>
         <div className="item-container">
