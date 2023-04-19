@@ -26,6 +26,7 @@ export default class TodoList extends React.Component {
       });
     }
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.itemList !== this.state.itemList) {
       const temp = JSON.stringify(this.state.itemList);
@@ -107,6 +108,7 @@ export default class TodoList extends React.Component {
           <div className="input-button-container">
             <form>
               <input
+                maxLength={25}
                 className="createTodo-input"
                 value={this.state.itemValue}
                 name="itemValue"

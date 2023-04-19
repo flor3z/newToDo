@@ -7,9 +7,10 @@ export default class Item extends React.Component {
   }
 
   render() {
-    const completedClass = this.props.isCompleted ? 'strike-out' : '';
+    console.log(this.props.task);
+
     return (
-      <li>
+      <li className={this.props.isCompleted ? 'completed-todo' : null}>
         <div className="item-container">
           <input
             className="item-checkbox"
@@ -18,7 +19,7 @@ export default class Item extends React.Component {
             checked={this.props.isCompleted}
           />
           <input
-            className={completedClass}
+            maxLength={25}
             type="text"
             onChange={(e) =>
               this.props.onClickEdit(e.target.value, this.props.id)
