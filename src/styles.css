@@ -2,19 +2,63 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  
 }
 body{
-  background-image: url(../src/img/pexels-lukas-1419923.jpg);
+  overflow-x: hidden;
+  /* background-image: url(../src/img/pexels-lukas-1419923.jpg);
   background-size:cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed; */
 }
 
 html {
+
   font-size: 62.5%;
-  /* font-family: 'Exo 2', sans-serif; */
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Playfair Display', serif;
 }
+/*//////////////// Sytling for Light or Dark ///////////////////*/
+
+#light{
+  height: 100rem;
+  width: 100vw;
+  background: rgb(211,230,246);
+  background: radial-gradient(circle, rgba(211,230,246,0.9948354341736695) 34%, rgba(210,210,222,1) 100%);
+  backdrop-filter: blur(4.7px);
+}
+
+
+#dark{
+  height: 100rem;
+  width: 100vw;
+  background: rgb(11,31,56);
+  background: radial-gradient(circle, rgba(11,31,56,1) 1%, rgba(9,11,40,1) 100%);
+  backdrop-filter: blur(4.7px);
+}
+
+#dark .task-content {
+  background: rgba(221, 220, 230, 0.35);
+  box-shadow: 0 4px 30px rgba(50, 50, 50, 0.3);
+  border: 1px solid rgba(221, 220, 230, 0.20);
+}
+
+
+#dark .main-title {
+  color: #faf9f6;
+}
+
+#dark .todo-text-value {
+  color: #faf9f6;
+}
+
+.switch{
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 50px;
+  align-items: center;
+}
+/*//////////////// Sytling for Light or Dark ///////////////////*/
 
 .task-content {
   display: flex;
@@ -22,19 +66,18 @@ html {
   flex-direction: column;
   width: 38rem;
   text-align: center;
-  border: 1px solid;
   padding: 1rem;
-  border-radius: .8rem;
-  box-shadow:  2px 2px 4px #000000;
-  background-color: rgb(234, 234, 237);
+  background: rgba(221, 220, 230, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(221, 220, 230, 0.20);
 }
 
 .main-title {
   letter-spacing: .5rem;
   font-weight: 600;
-  font-size: 3rem;
+  font-size: 4rem;
 }
-
 
 .input-button-container {
   display: flex;
@@ -45,8 +88,16 @@ html {
 }
 
 .createTodo-input {
-  width: 20rem;
+  border: 1px solid transparent;
+ font-family: 'Roboto', sans-serif;
+
+  width: 23rem;
   border-radius: .5rem;
+}
+
+.createTodo-input:focus {
+  outline: none;
+  border: 1.5px solid #1DA1F2;
 }
 
 .task-content input {
@@ -54,13 +105,8 @@ html {
   padding: .15rem;
 }
 
-.task-content input:focus {
-  outline: none;
-  border: 2px solid #1DA1F2;
-}
-
 .submitTodo-button {
-  box-shadow: 2px 3px 3px 2px  rgb(115, 115, 115, 0.75);
+  box-shadow: 2px 2px 4px 1.5px  rgba(17, 17, 17, 0.6);
   width: fit-content;
   height: 2.25rem;
   font-weight: 600;
@@ -85,67 +131,130 @@ html {
   transition: all .2s
 }
 
-.item-container{
-  margin-bottom: 1.25rem;
-  background-color: transparent;
-  border-bottom: 1px solid transparent;
-  border-image: linear-gradient(to right,rgba(255, 255, 255, 0.1),rgb(29, 161, 242), rgba(255, 255, 255, 0.1));
-  border-image-slice: 20;
-  list-style-type: none;
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-}
-
 .item-checkbox {
   margin-left: 1rem;
   height: 2rem;
   width: 2rem;
 }
 
-.item-container input {
-  cursor: pointer;
+.item-container{
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(to right,rgba(255, 255, 255, 0.1),rgb(29, 161, 242), rgba(255, 255, 255, 0.1));
+  border-image-slice: 20;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem;
 }
 
-.item-container input {
-  font-size: 1.8rem;
-  background-color: transparent;
-  border: none;
-}
-
-.item-container input:focus{
-  border: none;
-}
-
-
-.completed-todo {
-  text-decoration: line-through 1.75px #1DA1F2;
-  background-color: lightslategray;
+.completed-bg {
+  background-color: rgba(162, 171, 192, 0.774);
   border-radius: 5px;
-  position: relative;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
+.edit-todo-input {
+  width: 23rem;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.edit-todo-save {
+  box-shadow: 2px 2px 4px 0.5px  rgba(17, 17, 17, 0.6);
+  width: fit-content;
+  height: 2.25rem;
+  font-weight: 600;
+  letter-spacing: .2rem;
+  padding: .15rem;
+  cursor: pointer;
+  margin-left: .5rem;
+  border-radius: .5rem;
+  background-color: rgb(0,130,0);
+  border: 1px solid #3a3838;
+  color: #ffffff;
+  transition: all .1s;
+}
+
+.edit-todo-save:hover{
+  background-color:rgb(0, 165, 0);
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all .2s;
+}
+
+.edit-todo-save:active {
+  transform: scale(0.98);
+  filter: drop-shadow(1px 1.5px 1.5px rgb(0, 0, 0));
+}
+
+.todo-text-value {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.7rem;
+}
+
+.todo-text-value.completed::before {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: -0.5rem;
+  width: 0%;
+  height: 2.5px;
+  background: #1DA1F2;
+  animation: strikeout .2s linear forwards;
+}
+
+@keyframes strikeout {
+  to {
+    width: calc(100% + 1rem);
+  }
+}
 
 ul {
   list-style-type: none;
   padding-top: 1.5rem;
 }
 
-
-svg {
+.icon {
+  filter: drop-shadow(1.5px 3px .5px rgba(16, 16, 16, 0.217));
   padding: 0 1rem 0 1rem;
   height: 2rem;
   width: 2rem;
-  color: rgb(166, 36, 36);
-  
 }
 
-svg:hover {
-  color:rgb(237, 5, 5);
+.icon.edit {
+  color: rgb(0, 136, 0);
+}
+
+.icon.edit:hover {
+  color:rgb(0, 165, 0);
   cursor: pointer;
   transform: scale(1.1);
   transition: all .3s;
+}
+
+.icon.edit:active {
+  transform: scale(0.98);
+  filter: drop-shadow(1px 1.5px 1.5px rgb(0, 0, 0));
+}
+
+.icon.close {
+  color: rgb(194, 57, 57);
+}
+
+.icon.close:hover {
+  color:rgb(233, 34, 34);
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all .3s;
+}
+
+.icon.close:active {
+  transform: scale(0.98);
+  filter: drop-shadow(1px 1.5px 1.5px rgb(0, 0, 0));
 }
 
 .main-content-container{
@@ -157,5 +266,4 @@ svg:hover {
 
 
 
-/* For Trash Icon Hover Effect */
 

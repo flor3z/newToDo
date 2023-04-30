@@ -1,6 +1,7 @@
 import React from 'react';
 import Item from './Item';
 import { v4 as uuidv4 } from 'uuid';
+import ReactSwitch from 'react-switch';
 
 export default class TodoList extends React.Component {
   constructor(props) {
@@ -8,12 +9,26 @@ export default class TodoList extends React.Component {
     this.state = {
       itemValue: '',
       itemList: [],
+      theme: 'light',
     };
     this.onTextChangeHandler = this.onTextChangeHandler.bind(this);
     this.addItem = this.addItem.bind(this);
     this.onClickComplete = this.onClickComplete.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.onClickEdit = this.onClickEdit.bind(this);
+    this.onToggleTheme = this.onToggleTheme.bind(this);
+  }
+
+  onToggleTheme() {
+    if (this.state.theme === 'light') {
+      this.setState({
+        theme: 'dark',
+      });
+    } else {
+      this.setState({
+        theme: 'light',
+      });
+    }
   }
 
   componentDidMount() {
@@ -100,43 +115,52 @@ export default class TodoList extends React.Component {
   }
 
   render() {
+    const { theme } = this.state;
     return (
-      <div className="main-content-container">
-        <div className="task-content">
-          <label className="main-title">Tasks for the Day</label>
-          <br />
-          <div className="input-button-container">
-            <form>
-              <input
-                maxLength={25}
-                className="createTodo-input"
-                value={this.state.itemValue}
-                name="itemValue"
-                type="text"
-                placeholder="Add task..."
-                onChange={this.onTextChangeHandler}
-              />
-              <button className="submitTodo-button" onClick={this.addItem}>
-                Submit
-              </button>
-            </form>
-          </div>
-          <ul>
-            {this.state.itemList.map((item) => {
-              return (
-                <Item
-                  key={item.id}
-                  id={item.id}
-                  isCompleted={item.isCompleted}
-                  task={item.text}
-                  handleChange={this.onTextChangeHandler}
-                  onClickComplete={this.onClickComplete}
-                  deleteItem={this.deleteItem}
-                  onClickEdit={this.onClickEdit}
+      <div id={theme}>
+        <div className="switch">
+          <ReactSwitch
+            onChange={this.onToggleTheme}
+            checked={theme === 'dark' ? true : false}
+          />
+        </div>
+        <div className="main-content-container">
+          <div className="task-content">
+            <label className="main-title">Daily Tasks</label>
+            <br />
+            <div className="input-button-container">
+              <form>
+                <input
+                  maxLength={25}
+                  className="createTodo-input"
+                  value={this.state.itemValue}
+                  name="itemValue"
+                  type="text"
+                  placeholder="Add task..."
+                  onChange={this.onTextChangeHandler}
                 />
-              );
-            })}
-          </ul>
+                <button className="submitTodo-button" onClick={this.addItem}>
+                  Submit
+                </button>
+              </form>
+            </div>
+            <ul>
+              {this.state.itemList.map((item) => {
+                return (
+                  <Item
+                    key={item.id}
+                    id={item.id}
+                    isCompleted={item.isCompleted}
+                    task={item.text}
+                    handleChange={this.onTextChangeHandler}
+                    onClickComplete={this.onClickComplete}
+                    deleteItem={this.deleteItem}
+                    onClickEdit={this.onClickEdit}
+                  />
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
     );
