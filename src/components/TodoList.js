@@ -2,6 +2,9 @@ import React from 'react';
 import Item from './Item';
 import { v4 as uuidv4 } from 'uuid';
 import ReactSwitch from 'react-switch';
+// import { FaSun } from 'react-icons/fa';
+import { BsFillSunFill } from 'react-icons/bs';
+import { FaMoon } from 'react-icons/fa';
 
 export default class TodoList extends React.Component {
   constructor(props) {
@@ -9,7 +12,7 @@ export default class TodoList extends React.Component {
     this.state = {
       itemValue: '',
       itemList: [],
-      theme: 'light',
+      theme: 'dark',
     };
     this.onTextChangeHandler = this.onTextChangeHandler.bind(this);
     this.addItem = this.addItem.bind(this);
@@ -120,6 +123,36 @@ export default class TodoList extends React.Component {
       <div id={theme}>
         <div className="switch">
           <ReactSwitch
+            uncheckedIcon={
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '100%',
+                  fontSize: 15,
+                  color: 'orange',
+                  paddingRight: 2,
+                }}
+              >
+                <FaMoon />
+              </div>
+            }
+            checkedIcon={
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '100%',
+                  fontSize: 20,
+                  color: 'yellow',
+                  paddingRight: 2,
+                }}
+              >
+                <BsFillSunFill />
+              </div>
+            }
             onChange={this.onToggleTheme}
             checked={theme === 'dark' ? true : false}
           />
