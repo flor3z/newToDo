@@ -2,7 +2,6 @@ import React from 'react';
 import Item from './Item';
 import { v4 as uuidv4 } from 'uuid';
 import ReactSwitch from 'react-switch';
-// import { FaSun } from 'react-icons/fa';
 import { BsFillSunFill } from 'react-icons/bs';
 import { FaMoon } from 'react-icons/fa';
 

@@ -1,5 +1,4 @@
 import React from 'react';
-// import { FaTrash } from 'react-icons/fa';
 import { FaWindowClose } from 'react-icons/fa';
 import { FaEdit } from 'react-icons/fa';
 
@@ -24,7 +23,6 @@ export default class Item extends React.Component {
   }
 
   handleEdit() {
-    console.log(this.state.isEditing);
     this.setState({
       isEditing: !this.state.isEditing,
     });
